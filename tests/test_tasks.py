@@ -50,3 +50,4 @@ def test_can_add_multiple_tasks():
 def test_can_create_demo_task_repository():
     demo_repo = TaskRepository.new_demo()
     assert demo_repo.count >= 1
+

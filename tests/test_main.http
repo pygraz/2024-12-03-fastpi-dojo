@@ -1,13 +1,20 @@
 # Test your FastAPI endpoints
+// add a host variable
+@base_url = http://127.0.0.1:8000
 
-GET http://127.0.0.1:8000/
+GET {{base_url}}/
 Accept: application/json
 
 ###
 
-GET http://127.0.0.1:8000/hello/User
+GET {{base_url}}/hello/User
 Accept: application/json
 
 ###
 
-GET http://127.0.0.1:8000/tasks
+GET {{base_url}}/tasks
+
+###
+# @name get the first task...
+GET {{base_url}}/tasks/1
+
