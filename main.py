@@ -6,6 +6,11 @@ demo_repo = TaskRepository.new_demo()
 app = FastAPI()
 
 
+@app.get("/tasks")
+async def get_tasks():
+    return demo_repo.list()
+
+
 @app.get("/")
 async def root():
     return {"message": "Hello World"}
