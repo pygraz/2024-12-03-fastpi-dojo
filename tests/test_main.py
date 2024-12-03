@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 from main import app
+from tasks import Task
 
 
 client = TestClient(app)
@@ -21,4 +22,14 @@ def test_get_task_by_id():
     assert response.status_code == 200
     assert response.json()["id"] == 1
     assert response.json()["title"] == "Buy milk"
-    assert response.json()["category"] == "shopping"
+
+
+def test_add_and_expect_one_more_than_before():
+    def count():
+        response = client.get("/tasks")
+        return len(response.json())
+
+    c1 = count()
+    res = client.post("/tasks", json={"title": "Buy milk", "category": "shopping"})
+    assert count() == c1 + 1
+    Task(**res.json())

@@ -12,6 +12,13 @@ class Category(str, Enum):
     work = "work"
 
 
+class NewTask(BaseModel):
+    title: str
+    category: Category = Category.home
+    completed_on: date | None = None
+    due_on: date | None = None
+
+
 @total_ordering
 class Task(BaseModel):
     id: int
@@ -50,10 +57,24 @@ class TaskRepository:
         result.add(title="Water the flowers", category=Category.home)
         today = date.today()
         three_days_from_now = today + timedelta(days=3)
-        result.add(title="Send monthly report to Alice", category=Category.work, due_on=three_days_from_now)
+        result.add(
+            title="Send monthly report to Alice",
+            category=Category.work,
+            due_on=three_days_from_now,
+        )
         two_days_ago = today - timedelta(days=2)
-        result.add(title="Interview Bob about senior dev job", category=Category.work, completed_on=two_days_ago, due_on=two_days_ago)
-        result.add(title="Buy bread", category=Category.shopping, completed_on=today, due_on=two_days_ago)
+        result.add(
+            title="Interview Bob about senior dev job",
+            category=Category.work,
+            completed_on=two_days_ago,
+            due_on=two_days_ago,
+        )
+        result.add(
+            title="Buy bread",
+            category=Category.shopping,
+            completed_on=today,
+            due_on=two_days_ago,
+        )
         return result
 
     @property
