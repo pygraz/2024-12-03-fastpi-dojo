@@ -58,4 +58,33 @@ If you open the project in PyCharm Professional, you can utilize the [PyCharm Fa
 - [FastAPI](https://fastapi.tiangolo.com/)
   - [Pydandic](https://docs.pydantic.dev/latest/)
   - [Introduction to pydantic](https://pygraz.org/meetups/sessions/280/) - Juypter notebook from PyGraz lightning talk
--
+
+## Dojo
+
+For the coding dojo, we are going to build upon an existing FastAPI server (see [#1](https://github.com/pygraz/2024-12-03-fastpi-dojo/issues/1)))that essentially matches the [first steps of the FastAPI tutorial](https://fastapi.tiangolo.com/tutorial/first-steps/).
+
+The server will be extended to be able to manage tasks. Tasks have the following properties (see [#3](https://github.com/pygraz/2024-12-03-fastpi-dojo/issues/3)):
+
+- id: internal integer ID
+- title: text
+- description: text
+- completed_on: date, optional
+- due_on: date, optional
+- category: enum of: hobby, home, shopping, work
+
+Tasks are comparable and hashable, so they can be compared and stored in sets and dicts. The basis for comparison is the `id`. For the implementation, see `Task.__hash__()`, `__eq__`, `__lt__` and [functools.total_ordering](https://docs.python.org/3/library/functools.html#functools.total_ordering).
+
+Tasks are collected in a `TaskRepository` that provides methods to:
+
+- add
+- get
+- list
+- remove
+
+To make it easier we can create a demo task repository that already holds some data:
+
+```python
+from tasks import TaskRepository
+
+demo_repo = TaskRepository.new_demo()
+```
