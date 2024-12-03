@@ -1,3 +1,4 @@
+from click import Parameter
 from fastapi import FastAPI
 from tasks import TaskRepository
 
@@ -10,6 +11,10 @@ app = FastAPI()
 async def get_tasks():
     return demo_repo.list()
 
+
+@app.get("/tasks/{task_id}")
+async def get_task_by_id(task_id: int):
+    return demo_repo.get(task_id)
 
 @app.get("/")
 async def root():
