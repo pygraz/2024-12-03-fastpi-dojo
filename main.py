@@ -1,4 +1,7 @@
 from fastapi import FastAPI
+from tasks import TaskRepository
+
+demo_repo = TaskRepository.new_demo()
 
 app = FastAPI()
 
