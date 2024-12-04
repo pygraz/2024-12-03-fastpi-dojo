@@ -1,6 +1,23 @@
 # FastAPI dojo
 
-This is the source code produced during the [PyGRAZ meetuo on 2024-12-03](https://pygraz.org/meetups/2024-12-03).
+This is the source code produced during the [PyGRAZ meetuo on 2024-12-03](https://pygraz.org/meetups/2024-12-03). It implements a REST API to manage tasks/todos.
+
+The focus is on the API, so in order to keep things simple, storage uses a simple memory based repository. For a real world application, you might want to use [SQLModel](https://fastapi.tiangolo.com/tutorial/sql-databases/).
+
+To look at how we implemented specific features, take a look at the following pull requests:
+
+- [#4 Add route to list tasks](https://github.com/pygraz/2024-12-03-fastpi-dojo/pull/12/files)
+- [#5 Add route to get a task by id](https://github.com/pygraz/2024-12-03-fastpi-dojo/pull/13/files)
+- [#6 Add route to create task](https://github.com/pygraz/2024-12-03-fastpi-dojo/pull/14/files)
+- [#7 Add filter to list complete and active tasks](https://github.com/pygraz/2024-12-03-fastpi-dojo/pull/15/files)
+
+There is an additional pull request [#11 to switch from poetry to uv](https://github.com/pygraz/2024-12-03-fastpi-dojo/pull/11/files) for packaging. [Vv](https://docs.astral.sh/uv/) has several advantages over poetry, but at the time of the dojo still had limited support in some IDEs. Also, the pull reuqets does not include instructions to set up the project with uv. Therefor it has not been merged. Still, you can check out this branch instead of main to explore the project.
+
+## Links
+
+- [FastAPI](https://fastapi.tiangolo.com/)
+- [Pydandic](https://docs.pydantic.dev/latest/)
+- [Introduction to pydantic](https://pygraz.org/meetups/sessions/280/) - Juypter notebook from PyGraz lightning talk
 
 ## Project set up
 
@@ -52,12 +69,6 @@ poetry run pre-commit run --all-files
 ## PyCharm
 
 If you open the project in PyCharm Professional, you can utilize the [PyCharm FastAPI integration](https://www.jetbrains.com/help/pycharm/fastapi-project.html).
-
-## Links
-
-- [FastAPI](https://fastapi.tiangolo.com/)
-  - [Pydandic](https://docs.pydantic.dev/latest/)
-  - [Introduction to pydantic](https://pygraz.org/meetups/sessions/280/) - Juypter notebook from PyGraz lightning talk
 
 ## Dojo
 
