@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from tasks import TaskRepository, NewTask
+from tasks import TaskRepository, NewTask, TaskStatus
 
 demo_repo = TaskRepository.new_demo()
 
@@ -7,8 +7,8 @@ app = FastAPI()
 
 
 @app.get("/tasks")
-async def get_tasks():
-    return demo_repo.list()
+async def get_tasks(filter: TaskStatus | None = None):
+    return demo_repo.list(filter)
 
 
 @app.post("/tasks")

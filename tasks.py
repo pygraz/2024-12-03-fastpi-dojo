@@ -5,6 +5,11 @@ from datetime import date, timedelta
 from enum import Enum
 
 
+class TaskStatus(str, Enum):
+    active = "active"
+    completed = "completed"
+
+
 class Category(str, Enum):
     hobby = "hobby"
     home = "home"
@@ -103,8 +108,16 @@ class TaskRepository:
     def get(self, id: int) -> Task:
         return self._id_to_task_map[id]
 
-    def list(self) -> list[Task]:
-        return sorted(self._id_to_task_map.values())
+    def list(self, filter: TaskStatus) -> list[Task]:
+        return sorted(
+            [
+                task
+                for task in self._id_to_task_map.values()
+                if (filter == TaskStatus.completed and task.completed_on is not None)
+                or (filter == TaskStatus.active and task.completed_on is None)
+                or not filter
+            ]
+        )
 
     def remove(self, id: int) -> Task:
         return self._id_to_task_map.pop(id)
